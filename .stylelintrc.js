@@ -1,18 +1,19 @@
 module.exports = {
   extends: [
     "stylelint-config-standard",
-    "stylelint-config-standard-vue",
-    "stylelint-config-recess-order",
     "stylelint-config-prettier",
+    "stylelint-config-recommended-less",
+    "stylelint-config-standard-vue",
   ],
-  plugins: ["stylelint-less"],
+  plugins: ["stylelint-order"],
+  // 不同格式的文件指定自定义语法
   overrides: [
     {
-      files: ["*.less", "**/*.less"],
+      files: ["**/*.(less|css|vue|html)"], //css相关文件由 postcss-css 处理
       customSyntax: "postcss-less",
     },
     {
-      files: [`**/*.{vue,html}`],
+      files: ["**/*.(html|vue)"],
       customSyntax: "postcss-html",
     },
   ],
@@ -27,10 +28,7 @@ module.exports = {
   ],
   rules: {
     "no-descending-specificity": null, // 禁止在具有较高优先级的选择器后出现被其覆盖的较低优先级的选择器
-    "block-opening-brace-space-before": "always", //  "{" 前必须有空格
-    "comment-whitespace-inside": "always", // 注释 "/*" 后和 "*/" 前必须有空格
-    "declaration-colon-space-after": "always", // 属性名 ":" 后必须有空格
-    "declaration-colon-space-before": "never", // 属性名 ":" 前不能有空格
+    "selector-class-pattern": null, // 指定类选择器模式，由于老项目原因，和组件库命名规则，这里暂时不做限制
     "selector-pseudo-element-no-unknown": [
       true,
       {

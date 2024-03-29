@@ -7,7 +7,6 @@ export default (Vue) => {
     false,
     /base-[A-z]\w+\.(vue|js)$/
   );
-
   requireComponent.keys().forEach((fileName) => {
     const componentConfig = requireComponent(fileName);
     const componentName = upperFirst(

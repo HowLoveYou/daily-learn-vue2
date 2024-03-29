@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import Layout from "@/components/layout";
 
 //获取文件下的子路由
 function getfilesRouters(files) {
@@ -20,17 +21,33 @@ const routes = [
   {
     path: "/",
     redirect: "/home",
-    // children,
+    component: Layout,
+    children: [
+      {
+        path: "/home",
+        name: "home",
+        component: () => import("@/views/home/index.vue"),
+      },
+      {
+        path: "/hello",
+        name: "hello",
+        component: () => import("@/views/hello/index.vue"),
+      },
+    ],
   },
   {
-    path: "/home",
-    name: "home",
-    component: () => import("@/views/home/index.vue"),
+    path: "/login",
+    name: "login",
+    component: () => import("@/views/login/index.vue"),
   },
   {
-    path: "/hello",
-    name: "hello",
-    component: () => import("@/views/hello/index.vue"),
+    path: "/404",
+    name: "404",
+    component: () => import("@/views/error/404.vue"),
+  },
+  {
+    path: "*",
+    redirect: "/404",
   },
 ];
 
@@ -44,8 +61,10 @@ export default router;
 
 const originalPush = VueRouter.prototype.push;
 VueRouter.prototype.push = function push(location, resolve, reject) {
-  if (resolve || reject)
+  if (resolve || reject) {
     return originalPush.call(this, location, resolve, reject);
+  }
+
   return originalPush.call(this, location).catch((err) => {
     console.log(err);
   });

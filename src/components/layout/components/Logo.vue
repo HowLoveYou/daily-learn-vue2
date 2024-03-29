@@ -1,19 +1,15 @@
 <template>
-  <div id="app">
-    <router-view />
+  <div class="logo-container">
+    <img :src="require('@/assets/logo.png')" alt="" />
   </div>
 </template>
 
 <script>
 export default {
-  name: "App",
-  components: {},
+  name: "LogoPage",
   data() {
     return {};
   },
-  computed: {},
-  methods: {},
 };
 </script>
-
 <style lang="less" scoped></style>
