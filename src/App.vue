@@ -16,4 +16,11 @@ export default {
 };
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+#app {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: #eee;
+}
+</style>

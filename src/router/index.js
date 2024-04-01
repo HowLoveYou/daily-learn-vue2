@@ -27,11 +27,13 @@ const routes = [
         path: "/home",
         name: "home",
         component: () => import("@/views/home/index.vue"),
+        meta: { title: "home" },
       },
       {
         path: "/hello",
         name: "hello",
         component: () => import("@/views/hello/index.vue"),
+        meta: { title: "hello" },
       },
     ],
   },
